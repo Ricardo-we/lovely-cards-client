@@ -14,19 +14,23 @@ interface ConfirmCodeProps {}
 
 const ConfirmCode: FC<ConfirmCodeProps> = () => {
 	const router = useRouter();
-	const { language } = useLanguageContext();
+	const { language, setLanguageCode, } = useLanguageContext();
 	const { confirmationCodeValues, setConfirmationCodeValues, setUser } =
 		useAuthContext();
 	const [userCode, setUserCode] = useState<string>("");
 
 	const confirmUserCode = (user_code: string, user_id: number) => {
 		return UsersService.confirmUser(user_id, user_code)
-			.then((res) => setUser(res))
+			.then((res) => {
+				setUser(res);
+				if(res.user?.language?.code) setLanguageCode(res.user?.language?.code)
+				router.push("/");
+			})
 			.catch((err) => toast.error(err.toString()));
 	};
 
 	useEffect(() => {
-		if (!confirmationCodeValues?.user_id) router.back();
+		if (!confirmationCodeValues?.user_id) router.push("/");
 	}, [{ ...confirmationCodeValues }]);
 
 	return (
