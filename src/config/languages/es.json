@@ -1,0 +1,27 @@
+{
+    "notifications": {
+        "minLength": "El campo ? debe contener al menos ? ",
+        "invalid": "El valor dado es invalido"
+    },
+    "generic":{
+        "home": "Inicio",
+        "login": "Iniciar sesión",
+        "sign_up": "Registrarse",
+        "create": "Crear",
+        "confirm": "Confirmar",
+        "confirmCode": "Código de confirmación"
+    },
+    "view": {
+        "auth":{
+            "sign_up": {
+                "createFormTitle": "Crear usuario"
+            }
+        }
+    },
+    "fields": {
+        "username": "Nombre de usuario",
+        "email": "Correo electrónico",
+        "language": "Idioma",
+        "password": "Contraseña"
+    }
+}
