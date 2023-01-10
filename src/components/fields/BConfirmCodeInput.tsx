@@ -14,8 +14,6 @@ const BConfirmCodeInput: FC<BConfirmCodeInputProps> = ({ label, onChange, ...pro
 			<InputLabel>{label}</InputLabel>
 			<ReactCodeInput
                 {...props}
-				// name="confirmCode"
-				// inputMode="numeric"
 				onChange={(value) => onChange && onChange(value)}
 			/>
 		</FormControl>

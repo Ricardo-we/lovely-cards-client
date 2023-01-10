@@ -13,5 +13,9 @@ export const mainLayoutRoutes = (language: LanguageTranslationJson | any): NextN
     {
         label: language?.generic?.home as string,
         route: "/"
+    },
+    {
+        label: language?.generic?.myCards as string,
+        route: "/cards"
     }
 ]

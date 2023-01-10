@@ -20,7 +20,7 @@ export type colors =
 	| "success";
 
 interface BaseFormProps {
-	onSubmit: (data: any) => any;
+	onSubmit?: (data: any) => any;
 	children?: JSX.Element | JSX.Element[];
 	// initialValues: object;
 	validationSchema?: yup.AnySchema;
@@ -52,7 +52,7 @@ const BaseForm: FC<BaseFormProps> = ({
 
 	return (
 		<form
-			style={{ width: "80%", marginInline: "auto", ...style }}
+			style={{ width: "80%", height: "100%", marginBlock: "10px", marginInline: "auto", ...style }}
 			className={className}
 			onSubmit={handleSubmit}
 		>

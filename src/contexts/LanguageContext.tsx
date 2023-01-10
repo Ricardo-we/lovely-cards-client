@@ -15,6 +15,8 @@ interface LanguageContextProps {
 interface LanguageContextValues {
 	language?: LanguageTranslationJson | object;
 	setLanguage: (data: any) => any;
+	languageCode?: string
+	setLanguageCode?: (code: string) => any;
 }
 
 export const LanguageContext = createContext<object | any>({});
@@ -22,6 +24,7 @@ export const LanguageContext = createContext<object | any>({});
 export function LanguageProvider({ children }: LanguageContextProps) {
 	const [languageCode, setLanguageCode] = useLocalStorage<string>(
 		generateStorageKey("languageCode"),
+		"es"
 	);
 	const [language, setLanguage] = useLocalStorage<object | any>(
 		generateStorageKey("languageObj"),
@@ -31,7 +34,7 @@ export function LanguageProvider({ children }: LanguageContextProps) {
 
 	useEffect(() => {
 		if (!language) setLanguage(LanguageService.getLanguage(languageCode));
-	}, [languageCode, user?.language]);
+	}, [languageCode, user?.language?.code]);
 
 	useEffect(() => {
 		if (

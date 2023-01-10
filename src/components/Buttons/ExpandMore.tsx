@@ -1,5 +1,7 @@
 import { IconButton, IconButtonProps, styled } from "@mui/material";
 
+import { ExpandMoreSharp } from "@mui/icons-material";
+
 interface ExpandMoreProps extends IconButtonProps {
 	expand: boolean;
 	label?: string;
@@ -10,7 +12,8 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 	<>
 		<h4 style={{display: "inline-block"}}>{label}</h4>
 		<IconButton {...other}>
-			<span className="material-icons">expand_more</span>
+			<ExpandMoreSharp/>
+			{/* <span className="material-icons">expand_more</span> */}
 		</IconButton>
 	</>
 	);

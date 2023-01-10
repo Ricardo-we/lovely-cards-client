@@ -30,18 +30,19 @@ const ConfirmCode: FC<ConfirmCodeProps> = () => {
 	};
 
 	useEffect(() => {
-		if (!confirmationCodeValues?.user_id) router.push("/");
+		if (!confirmationCodeValues?.user_id) router.push("/cards");
 	}, [{ ...confirmationCodeValues }]);
 
 	return (
 		<>
 			<ToastContainer />
-			<FlexBox direction="column" align="center" justify="space-between" style={{marginTop: "200px"}}>
+			<FlexBox direction="column" align="center" justify="space-between" style={{marginTop: "200px", minHeight: "150px",}}>
 				<h2>{language.generic.confirmCode}</h2>
+
 				<BConfirmCodeInput
 					name="confirmCode"
 					inputMode="numeric"
-					label={language?.generic?.confirmCode}
+					// label={language?.generic?.confirmCode}
 					onChange={(value) => setUserCode(value)}
 				/>
 
@@ -52,6 +53,7 @@ const ConfirmCode: FC<ConfirmCodeProps> = () => {
 							confirmationCodeValues.user_id,
 						);
 					}}
+					style={{width: "30%", minWidth: "200px", marginInline: "auto"}}
 				>
 					{language?.generic?.confirm}
 				</BButton>

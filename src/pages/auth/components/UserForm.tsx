@@ -14,12 +14,14 @@ interface UserFormProps {
 	onSubmit?: (data: any) => any;
 	buttonText?: string;
 	formTitle?: string;
+	isNewAccount?: boolean;
 }
 
 const UserForm: FC<UserFormProps> = ({
 	onSubmit = (data) => {},
 	formTitle,
 	buttonText,
+	isNewAccount = true,
 }) => {
 	const { language } = useLanguageContext();
 	const [availableLanguages, setAvailableLanguages] = useState<Helper[]>([]);
@@ -50,6 +52,7 @@ const UserForm: FC<UserFormProps> = ({
 		<>
 			<ToastContainer />
 			<BaseForm
+				style={{marginTop: "150px"}}
 				onSubmit={formik.submitForm}
 				title={formTitle}
 				buttonText={buttonText}
@@ -58,34 +61,37 @@ const UserForm: FC<UserFormProps> = ({
 					name="username"
 					onChange={formik.handleChange}
 					error={formik.errors.username}
-					label={language.fields.username}
+					label={language?.fields?.username}
 					value={formik.values.username}
 				/>
 				<BInput
 					name="email"
 					onChange={formik.handleChange}
 					error={formik.errors.email}
-					label={language.fields.email}
+					label={language?.fields?.email}
 					value={formik.values.email}
 				/>
 				<BInput
 					name="password"
 					onChange={formik.handleChange}
 					error={formik.errors.password}
-					label={language.fields.password}
+					label={language?.fields?.password}
 					value={formik.values.password}
-                    type="password"
+					type="password"
 				/>
-				<BSelect
-                    name="language_id"
-					error={formik.errors.language_id}
-					onChange={formik.handleChange}
-					items={availableLanguages?.map((language) => ({
-						value: language?.id,
-						label: language?.name,
-					}))}
-					label={language.fields.language}
-				/>
+
+				{isNewAccount ? (
+					<BSelect
+						name="language_id"
+						error={formik.errors.language_id}
+						onChange={formik.handleChange}
+						items={availableLanguages?.map((language) => ({
+							value: language?.id,
+							label: language?.name,
+						}))}
+						label={language?.fields?.language}
+					/>
+				) : <></>}
 			</BaseForm>
 		</>
 	);

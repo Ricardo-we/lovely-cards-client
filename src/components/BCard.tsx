@@ -12,29 +12,31 @@ import {
 import { FC, useState } from "react";
 
 import ExpandMore from "./Buttons/ExpandMore";
-import { children } from "../types/Components";
+import type { children } from "../types/Components";
 
 interface BCardProps extends CardProps{
 	children: children;
     header?: children
     topContent?: children;
 	cardActions?: children
+	subHeader?: children;
 }
 /***
  * @header CardHeader
  * @topContent the top card content
  * @children the expanded content
  * */
-const BCard: FC<BCardProps> = ({ header,cardActions, topContent, children, ...props }) => {
+const BCard: FC<BCardProps> = ({ subHeader, header,cardActions, topContent, children, ...props }) => {
 	const [cardExpanded, setCardExpanded] = useState<boolean>(false);
 
 	return (
 		<Card
             {...props}
         >
-            <CardHeader>
-                {header}
-            </CardHeader>
+            <CardHeader
+				title={header}
+				subheader={subHeader}
+			/>
 
             <CardContent>
                 {topContent}

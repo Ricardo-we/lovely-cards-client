@@ -9,19 +9,32 @@
         "sign_up": "Registrarse",
         "create": "Crear",
         "confirm": "Confirmar",
-        "confirmCode": "Código de confirmación"
+        "confirmCode": "Código de confirmación",
+        "myCards": "Mis cartas",
+        "noContent": "Opss parece que no hay contenido...",
+        "backgroundType": "Tipo de fondo",
+        "welcome": "Bienvenido ?",
+        "notLoggedIn": "No ha iniciado sesion"
     },
     "view": {
         "auth":{
             "sign_up": {
                 "createFormTitle": "Crear usuario"
             }
+        },
+        "cards": {
+            "createCard": "Crear carta"
         }
     },
     "fields": {
         "username": "Nombre de usuario",
         "email": "Correo electrónico",
         "language": "Idioma",
-        "password": "Contraseña"
+        "password": "Contraseña",
+        "title": "Título",
+        "music": "Música",
+        "background": "Fondo",
+        "backgroundType": "Tipo de fondo",
+        "cardType": "Tipo de carta"
     }
 }

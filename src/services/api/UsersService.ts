@@ -11,6 +11,12 @@ export default class UsersService {
         return response;
     }
 
+    static async login(user?: IUser){
+        if(!user) return null;
+        const response = await usersServiceReq.post(user, { routeParams: "/login" });
+        return response;
+    }
+
     static async confirmUser(user_id?: number, code?: string){
         return await usersServiceReq.post({ user_id, user_code: code }, { routeParams: "/confirmation" })
     }

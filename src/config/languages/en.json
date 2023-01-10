@@ -9,19 +9,32 @@
         "sign_up": "Sign Up",
         "create": "Create",
         "confirm": "Confirm",
-        "confirmCode": "Confirmation code"
+        "confirmCode": "Confirmation code",
+        "myCards": "My Cards",
+        "noContent": "Opss it looks like is nothing yet...",
+        "backgroundType": "Background type",
+        "welcome": "Welcome ?",
+        "notLoggedIn": "Not logged in"
     },
     "view": {
         "auth":{
             "sign_up": {
                 "createFormTitle": "Create user"
             }
+        },
+        "cards": {
+            "createCard": "Create card"
         }
     }, 
     "fields": {
         "username": "Username",
         "email": "Email",
         "language": "Language",
-        "password": "Password"
+        "password": "Password",
+        "title": "Title",
+        "music": "Music",
+        "background": "Background",
+        "backgroundType": "Background type",
+        "cardType": "Card type"
     }
 }

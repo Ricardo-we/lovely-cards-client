@@ -1,9 +1,9 @@
     
 export function safeJsonParse(value?: string | null){
-    if(!value) return {};
+    if(!value) return null;
     try {
         return JSON.parse(value)
     } catch (error) {
-        return {}
+        return null
     }
 }
