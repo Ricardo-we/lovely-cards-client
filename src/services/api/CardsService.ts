@@ -18,4 +18,12 @@ export default class CardsService {
         );
         return response;
     }
+
+    static updateCard = async (cardId: number | string,card: FormData, userToken: string) => {
+        const response = await cardsRequest.update(
+            card,
+            { routeParams: `/${cardId?.toString()}`,  headers: cardsRequest.createHeaders(userToken) }
+        );
+        return response;
+    }
 }

@@ -14,9 +14,11 @@ const BColorPicker: FC<BColorPickerProps> = ({ value, onChange,label, ...props }
 		<FlexBox direction="column" align="flex-start" justify="flex-start" style={{width: "95%", marginInline: "auto"}}>
             <BLabel style={{textAlign:"left"}}>{label}</BLabel>
             <HexColorPicker
+            
                 style={{marginInline: 0, width: "100%"}}
                 onChange={onChange}
-                defaultValue={value}
+                // defaultValue={"#fff"}
+                color={value}
             />
    
 		</FlexBox>

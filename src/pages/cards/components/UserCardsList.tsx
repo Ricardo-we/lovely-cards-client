@@ -12,9 +12,11 @@ import { useRouter } from "next/router";
 
 interface UserCardsListProps {
 	cards?: ICard[];
+	onUpdate?: (card?: ICard) => any;
+	onDelete?: (card?: ICard) => any;
 }
 
-const UserCardsList: FC<UserCardsListProps> = ({ cards }) => {
+const UserCardsList: FC<UserCardsListProps> = ({ cards, onDelete, onUpdate }) => {
 	const { language } = useLanguageContext();
 
 	return (
@@ -23,7 +25,12 @@ const UserCardsList: FC<UserCardsListProps> = ({ cards }) => {
 			<FlexBox style={{width: "80%", marginInline: "auto"}} direction="row" justify="space-evenly" align="center">
 				{cards && cards?.length > 0 ? (
 					cards?.map((card: ICard | any, index: number) => (
-						<UserCardListItem card={card} key={index} />
+						<UserCardListItem 
+							card={card} 
+							onDelete={onDelete}
+							onUpdate={onUpdate}
+							key={index} 
+						/>
 					))
 				) : (
 					<h2>{language?.generic?.noContent}</h2>

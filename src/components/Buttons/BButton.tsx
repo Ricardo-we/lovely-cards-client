@@ -23,13 +23,7 @@ const BButton: FC<BButtonProps> = ({
 	...props
 }) => {
 	return (
-		<Button
-			{...props}
-			variant="outlined"
-			onClick={onClick}
-			style={style}
-			color={color}
-		>
+		<Button onClick={onClick} style={{ ...style }} color={color}  {...props}>
 			{children}
 		</Button>
 	);

@@ -1,6 +1,7 @@
 import { SequleizeBaseModel } from "./BaseModel";
 
 export interface ICard extends SequleizeBaseModel {
+    id
     title?: string,
     music?: string
     music_public_id?: string

@@ -14,6 +14,7 @@ interface AuthContextValue {
 	setUser: (value: any) => any;
 	confirmationCodeValues: any;
 	setConfirmationCodeValues: (value: any) => any;
+	validateUser: (onErrorFunc?: (message: string) => any, message?: string,) => () => boolean;
 }
 
 export const AuthContext = createContext<AuthContextValue | any>({});
@@ -49,6 +50,18 @@ export const useAuthContext = () => {
 		setUser: ctx?.setUser,
 		confirmationCodeValues: ctx?.confirmationCodeValues,
 		setConfirmationCodeValues: ctx?.setConfirmationCodeValues,
+		validateUser: (
+			onErrorFunc?: (message: string) => {},
+			message?: string,
+		) => {
+			return () => {
+				if (!ctx?.user?.token) {
+					onErrorFunc && onErrorFunc(message || "Not logged in");
+					return false;
+				}
+				return true
+			}
+		},
 	};
 	return authContextResult;
 };

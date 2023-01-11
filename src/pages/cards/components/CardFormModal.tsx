@@ -13,6 +13,7 @@ import { ICard } from "../../../types/Card";
 import { parseJsonToFormData } from "../../../utils/generic/form.utils";
 import { useFormik } from "formik";
 import { useLanguageContext } from "../../../contexts/LanguageContext";
+import { useReactiveFormik } from "../../../hooks/useReactiveFormik";
 
 interface CardFormModalProps {
 	visible?: boolean;
@@ -71,14 +72,19 @@ const CardFormModal: FC<CardFormModalProps> = ({
 		onSubmit && onSubmit(formData);
 	};
 
-	const formik = useFormik({
+	const formik = useReactiveFormik(
+		{
+			initialValues,
+			onSubmit: handleSubmit,
+		},
 		initialValues,
-		onSubmit: handleSubmit,
-	});
+	);
 
 	useEffect(() => {
 		getCardTypes();
 	}, []);
+
+
 
 	return (
 		<>
@@ -119,7 +125,10 @@ const CardFormModal: FC<CardFormModalProps> = ({
 						value={formik.values?.card_type}
 						onChange={formik.handleChange}
 						error={formik.errors?.card_type}
-						items={cardTypes?.map(cardType => ({ label: cardType.name, value: cardType.code }))}
+						items={cardTypes?.map((cardType) => ({
+							label: cardType.name,
+							value: cardType.code,
+						}))}
 					/>
 
 					<BSelect
@@ -127,7 +136,10 @@ const CardFormModal: FC<CardFormModalProps> = ({
 						name="card_background_type"
 						value={formik.values?.card_background_type}
 						onChange={formik.handleChange}
-						items={cardBackgroundTypes?.map(bgType => ({ label: bgType.name, value: bgType.code }))}
+						items={cardBackgroundTypes?.map((bgType) => ({
+							label: bgType.name,
+							value: bgType.code,
+						}))}
 						error={formik.errors?.card_background_type}
 					/>
 				</BaseForm>

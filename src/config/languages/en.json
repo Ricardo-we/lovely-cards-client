@@ -8,13 +8,26 @@
         "login": "Login",
         "sign_up": "Sign Up",
         "create": "Create",
+        "update": "Update",
         "confirm": "Confirm",
         "confirmCode": "Confirmation code",
         "myCards": "My Cards",
         "noContent": "Opss it looks like is nothing yet...",
         "backgroundType": "Background type",
         "welcome": "Welcome ?",
-        "notLoggedIn": "Not logged in"
+        "notLoggedIn": "Not logged in",
+        "card_types":{
+            "book": "Book", 
+            "cards": "Cards", 
+            "slides": "Slides",
+            "cube": "Cube", 
+            "flip": "Flip"
+        },
+        "card_background_types": {
+            "decorated_image": "Decorated Image",
+            "image": "Image",
+            "color": "Color"
+        }
     },
     "view": {
         "auth":{
@@ -23,7 +36,8 @@
             }
         },
         "cards": {
-            "createCard": "Create card"
+            "createCard": "Create card",
+            "updateCard": "Update card"
         }
     }, 
     "fields": {

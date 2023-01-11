@@ -8,13 +8,26 @@
         "login": "Iniciar sesión",
         "sign_up": "Registrarse",
         "create": "Crear",
+        "update": "Actualizar",
         "confirm": "Confirmar",
         "confirmCode": "Código de confirmación",
         "myCards": "Mis cartas",
         "noContent": "Opss parece que no hay contenido...",
         "backgroundType": "Tipo de fondo",
         "welcome": "Bienvenido ?",
-        "notLoggedIn": "No ha iniciado sesion"
+        "notLoggedIn": "No ha iniciado sesion",
+        "card_types":{
+            "book": "Libro", 
+            "cards": "Cartas", 
+            "slides": "Slides",
+            "cube": "Cubo", 
+            "flip": "Flip"
+        },
+        "card_background_types": {
+            "decorated_image": "Imagen decorada",
+            "image": "Imagen",
+            "color": "Color"
+        }
     },
     "view": {
         "auth":{
@@ -23,7 +36,8 @@
             }
         },
         "cards": {
-            "createCard": "Crear carta"
+            "createCard": "Crear carta",
+            "updateCard": "Actualizar carta"
         }
     },
     "fields": {

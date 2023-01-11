@@ -17,10 +17,16 @@ interface CardsViewProps {}
 
 const CardsView: FC<CardsViewProps> = () => {
 	const router = useRouter();
-	const { user } = useAuthContext();
+	const { user, validateUser } = useAuthContext();
 	const { language } = useLanguageContext();
+	const userValidator = validateUser(toast.error, language?.generic?.notLoggedIn);
+
 	const [addCardModalOpen, setAddCardModalOpen] = useState<boolean>(false);
+	const [updateCardModalOpen, setUpdateCardModalOpen] =
+		useState<boolean>(false);
 	const [cards, setCards] = useState<Array<ICard | any>>([]);
+	const [selectedCard, setSelectedCard] = useState<ICard>();
+
 
 	const getUserCards = () =>
 		CardsService.getUserCards(user?.token)
@@ -28,16 +34,25 @@ const CardsView: FC<CardsViewProps> = () => {
 			.catch((err) => toast.error(err?.toString()));
 
 	const createCard = (data: any) => {
-        if(!user?.token) return toast.error(language?.generic?.notLoggedIn);
+		if(!userValidator()) return;
 		return CardsService.createCard(data, user?.token)
 			.then(getUserCards)
 			.catch((err) => toast.error(err?.message));
 	};
 
+	const updateCard = (data: FormData) => {
+		const cardId = data.get("id")?.toString() as string;
+		if(!userValidator()) return;
+		return CardsService.updateCard(cardId, data, user?.token)
+			.then(getUserCards)
+			.catch((err) => toast.error(err?.message));
+	}
+
 	useEffect(() => {
 		if (user && !user?.token) router.push("/auth/login");
 		if (user?.token) getUserCards();
 	}, [user]);
+	
 
 	return (
 		<>
@@ -56,6 +71,15 @@ const CardsView: FC<CardsViewProps> = () => {
 				formTitle={language?.view?.cards?.createCard}
 			/>
 
+			<CardFormModal
+				onClose={() => setUpdateCardModalOpen((prev) => !prev)}
+				visible={updateCardModalOpen && selectedCard !== undefined}
+				buttonText={language?.generic?.update}
+				initialValues={selectedCard}
+				onSubmit={updateCard}
+				formTitle={language?.view?.cards?.updateCard}
+			/>
+
 			<FlexBox
 				align="center"
 				justify="flex-end"
@@ -69,7 +93,14 @@ const CardsView: FC<CardsViewProps> = () => {
 				</IconButton>
 			</FlexBox>
 
-			<UserCardsList cards={cards} />
+			<UserCardsList
+				onDelete={(card) => console.log(card)}
+				onUpdate={(card) => {
+					setSelectedCard(card);
+					setUpdateCardModalOpen(true);
+				}}
+				cards={cards}
+			/>
 		</>
 	);
 };
