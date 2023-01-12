@@ -11,6 +11,8 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { cutSentence } from "../../../utils/generic/string.utils";
 import { useAudio } from "../../../hooks/useAudio";
 import { useLanguageContext } from "../../../contexts/LanguageContext";
+import { useRouter } from "next/router";
+import { useTheme } from "@mui/material";
 
 interface CardListItemProps {
 	card?: ICard;
@@ -23,12 +25,24 @@ const UserCardListItem: FC<CardListItemProps> = ({
 	onDelete,
 	onUpdate,
 }) => {
+	const router = useRouter();
 	const { toggleAudioActive, audioActive } = useAudio(card?.music);
 	const { language } = useLanguageContext();
+	const { palette } = useTheme();
 
+	if(!card?.id) return null;
 	return (
 		<BCard
+			onClick={() => router.push(`/cards/${card.id}`)}
 			header={card?.title ? cutSentence(card?.title, 3) : ""}
+			sx={{
+				":hover": { 
+					background: palette.info.light,
+					opacity: "50%"
+				},
+				cursor: "pointer",
+				transition: "500ms"
+			}}
 			style={{
 				minWidth: "250px",
 				maxWidth: "250px",

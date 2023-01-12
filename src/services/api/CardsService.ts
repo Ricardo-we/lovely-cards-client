@@ -19,11 +19,16 @@ export default class CardsService {
         return response;
     }
 
-    static updateCard = async (cardId: number | string,card: FormData, userToken: string) => {
+    static updateCard = async (cardId: number | string, card: FormData, userToken: string) => {
         const response = await cardsRequest.update(
             card,
-            { routeParams: `/${cardId?.toString()}`,  headers: cardsRequest.createHeaders(userToken) }
+            { routeParams: `/${cardId?.toString()}`, headers: cardsRequest.createHeaders(userToken) }
         );
         return response;
+    }
+
+    static getCardsWithContents = async (cardId: number|string, userToken: string) => {
+        const userCards = await cardsRequest.find({ routeParams: `/${cardId}`, headers: cardsRequest.createHeaders(userToken) })
+        return userCards
     }
 }
