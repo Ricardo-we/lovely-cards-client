@@ -6,6 +6,7 @@ import BButton from "../../../components/Buttons/BButton";
 import BCard from "../../../components/BCard";
 import { ICard } from "../../../types/Card";
 import KeyValueList from "../../../components/KeyValueList";
+import Link from "next/link";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { cutSentence } from "../../../utils/generic/string.utils";
@@ -30,78 +31,88 @@ const UserCardListItem: FC<CardListItemProps> = ({
 	const { language } = useLanguageContext();
 	const { palette } = useTheme();
 
-	if(!card?.id) return null;
+	if (!card?.id) return null;
 	return (
-		<BCard
-			onClick={() => router.push(`/cards/${card.id}`)}
-			header={card?.title ? cutSentence(card?.title, 3) : ""}
-			sx={{
-				":hover": { 
-					background: palette.info.light,
-					opacity: "50%"
-				},
-				cursor: "pointer",
-				transition: "500ms"
-			}}
-			style={{
-				minWidth: "250px",
-				maxWidth: "250px",
-				margin: "10px",
-				backgroundColor:
-					card?.card_background_type === "color"
-						? card?.card_background
-						: "#fff",
-				backgroundImage:
-					card?.card_background_type === "image"
-						? card?.card_background
-						: undefined,
-			}}
-			topContent={
-				<ActionButtons
-					onDelete={() =>
-						onDelete && card
-							? onDelete(card)
-							: console.warn("onDelete function not  defined")
-					}
-					onUpdate={() =>
-						onUpdate && card
-							? onUpdate(card)
-							: console.warn("onUpdateFunction not defined")
-					}
-				>
-					<BButton onClick={toggleAudioActive}>
-						{audioActive ? <PauseIcon /> : <PlayArrowIcon />}
-					</BButton>
-				</ActionButtons>
-			}
-		>
-			<BList>
-				<KeyValueList
-					keyName={language?.fields?.title}
-					value={card?.title}
-				/>
+		<Link  onClick={e => e.stopPropagation()} href={`/cards/${card?.id}`} legacyBehavior passHref>
+			<BCard
+				onClick={(e) => {
+					e.stopPropagation();
+				}}
+				header={card?.title ? cutSentence(card?.title, 3) : ""}
+				sx={{
+					":hover": {
+						backgroundColor: "#fff",
+						opacity: "80%",
+					},
+					cursor: "pointer",
+					transition: "500ms",
+				}}
+				style={{
+					minWidth: "250px",
+					maxWidth: "250px",
+					margin: "10px",
+					backgroundColor:
+						card?.card_background_type === "color"
+							? card?.card_background
+							: "#fff",
+					backgroundImage:
+						card?.card_background_type === "image"
+							? card?.card_background
+							: undefined,
+				}}
+				topContent={
+					<ActionButtons
+						onDelete={() =>
+							onDelete && card
+								? onDelete(card)
+								: console.warn("onDelete function not  defined")
+						}
+						onUpdate={() =>
+							onUpdate && card
+								? onUpdate(card)
+								: console.warn("onUpdateFunction not defined")
+						}
+					>
+						<BButton
+							variant="contained"
+							color="info"
+							onClick={toggleAudioActive}
+						>
+							{audioActive ? <PauseIcon /> : <PlayArrowIcon />}
+						</BButton>
+					</ActionButtons>
+				}
+			>
+				<BList>
+					<KeyValueList
+						keyName={language?.fields?.title}
+						value={card?.title}
+					/>
 
-				<KeyValueList
-					keyName={language?.generic?.backgroundType}
-					value={
-						card?.card_background_type
-							? language?.generic?.card_background_types?.[
-									card.card_background_type
-							  ]
-							: ""
-					}
-				/>
+					<KeyValueList
+						keyName={language?.generic?.backgroundType}
+						value={
+							card?.card_background_type
+								? language?.generic?.card_background_types?.[
+										card.card_background_type
+								  ]
+								: ""
+						}
+					/>
 
-				<KeyValueList
-					keyName={language?.fields?.cardType}
-					value={
-						card?.card_type
-							? language?.generic?.card_types?.[card.card_type]
-							: ""
-					}
-				/>
-			</BList>
-		</BCard>
+					<KeyValueList
+						keyName={language?.fields?.cardType}
+						value={
+							card?.card_type
+								? language?.generic?.card_types?.[
+										card.card_type
+								  ]
+								: ""
+						}
+					/>
+				</BList>
+			</BCard>
+		</Link>
 	);
 };
 

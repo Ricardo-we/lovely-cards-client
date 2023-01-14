@@ -31,6 +31,7 @@ const ActionButtons: FC<ActionButtonsProps> = ({
 				...style,
 				width: "fit-content",
 			}}
+			onClick={e => e.stopPropagation()}
 		>
 			<BButton variant={variant} onClick={() => onDelete && onDelete()} color="error">
 				<DeleteForeverIcon />

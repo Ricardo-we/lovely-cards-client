@@ -13,9 +13,9 @@ export const CardSlide = ({ children, color, ...props }: CardSlideProps) => {
 			{...props}
 			style={{
 				borderRadius: "10px",
-				backgroundColor: color,
                 height: "100%",
 				...props.style,
+				backgroundColor: color,
 			}}
 		>
 			{children}
