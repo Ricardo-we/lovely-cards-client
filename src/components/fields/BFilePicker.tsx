@@ -47,6 +47,7 @@ const BFilePicker: FC<BFilePickerProps> = ({
 				style={{ textAlign: "left" }}
 				disabled={loading}
 				onClick={handleChange}
+				variant="outlined"
 			>
 				{loading ? (
 					<BSpinner color="primary" />

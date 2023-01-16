@@ -1,7 +1,8 @@
 {
     "notifications": {
         "minLength": "Field ? should contain at least ? ",
-        "invalid": "El valor dado es invalido"
+        "invalid": "Invlid value",
+        "requiredField": "Field ? is required"
     },
     "generic":{
         "home": "Home Page",
@@ -9,7 +10,9 @@
         "sign_up": "Sign Up",
         "create": "Create",
         "update": "Update",
+        "delete": "Delete",
         "confirm": "Confirm",
+        "wishDelete": "Are you sure you want to delete",
         "confirmCode": "Confirmation code",
         "myCards": "My Cards",
         "noContent": "Opss it looks like is nothing yet...",
@@ -27,7 +30,8 @@
             "decorated_image": "Decorated Image",
             "image": "Image",
             "color": "Color"
-        }
+        },
+        "sureToDelete": "Are you sure to delete this item?"
     },
     "view": {
         "auth":{
@@ -38,6 +42,14 @@
         "cards": {
             "createCard": "Create card",
             "updateCard": "Update card"
+        },
+        "cardMessage": {
+            "createMessage": "Create message",
+            "updateMessage": "Update message"
+        },
+        "cardImage": {
+            "createImage": "Add image",
+            "updateImage": "Update image"
         }
     }, 
     "fields": {
@@ -49,6 +61,12 @@
         "music": "Music",
         "background": "Background",
         "backgroundType": "Background type",
-        "cardType": "Card type"
+        "cardType": "Card type",
+        "heading": "Heading",
+        "content": "Content",
+        "color": "Color",
+        "image": "Image",
+        "imageUrl": "Image link/url",
+        "isUrl": "Use image link/url"
     }
 }

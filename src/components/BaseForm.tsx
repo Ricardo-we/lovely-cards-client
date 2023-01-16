@@ -52,7 +52,7 @@ const BaseForm: FC<BaseFormProps> = ({
 
 	return (
 		<form
-			style={{ width: "80%", height: "100%", marginBlock: "10px", marginInline: "auto", ...style }}
+			style={{ width: "80%", height: "100%", marginBlock: "10px", display: "flex", flexDirection: "column", alignItems:"center", justifyContent: "flex-start", marginInline: "auto", ...style }}
 			className={className}
 			onSubmit={handleSubmit}
 		>
@@ -77,7 +77,7 @@ const BaseForm: FC<BaseFormProps> = ({
 						variant="contained"
 						type="submit"
 						color="info"
-						style={{ marginTop: 10, width: "100%" }}
+						style={{ marginTop: 10, width: "100%", alignSelf: "flex-end" }}
 					>
 						{props?.buttonText}
 					</Button>

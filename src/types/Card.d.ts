@@ -15,7 +15,7 @@ export interface ICardMessage extends SequleizeBaseModel{
     heading?: string;
     content?: string;
     color?: string
-    card_id?: number;
+    card_id?: number | string;
     orderNumber?: number;
 }
 

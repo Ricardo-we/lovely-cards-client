@@ -1,15 +1,18 @@
 {
     "notifications": {
         "minLength": "El campo ? debe contener al menos ? ",
-        "invalid": "El valor dado es invalido"
+        "invalid": "El valor dado es invalido",
+        "requiredField": "El campo ? es requerido"
     },
     "generic":{
         "home": "Inicio",
         "login": "Iniciar sesión",
         "sign_up": "Registrarse",
         "create": "Crear",
+        "delete": "Eliminar",
         "update": "Actualizar",
         "confirm": "Confirmar",
+        "wishDelete": "Desea eliminar",
         "confirmCode": "Código de confirmación",
         "myCards": "Mis cartas",
         "noContent": "Opss parece que no hay contenido...",
@@ -27,7 +30,8 @@
             "decorated_image": "Imagen decorada",
             "image": "Imagen",
             "color": "Color"
-        }
+        },
+        "sureToDelete": "¿Está seguro de eliminar este elemento?"
     },
     "view": {
         "auth":{
@@ -38,6 +42,14 @@
         "cards": {
             "createCard": "Crear carta",
             "updateCard": "Actualizar carta"
+        },
+        "cardMessage": {
+            "createMessage": "Crear mensaje",
+            "updateMessage": "Actualizar mensaje"
+        },
+        "cardImage": {
+            "createImage": "Añadir imagen",
+            "updateImage": "Actualizar imagen"
         }
     },
     "fields": {
@@ -49,6 +61,12 @@
         "music": "Música",
         "background": "Fondo",
         "backgroundType": "Tipo de fondo",
-        "cardType": "Tipo de carta"
+        "cardType": "Tipo de carta",
+        "heading": "Título",
+        "content": "Contenido",
+        "color": "Color",
+        "image": "Imagen",
+        "imageUrl": "Link/URL de imagen",
+        "isUrl": "Utilizar link/url de imagen"
     }
 }

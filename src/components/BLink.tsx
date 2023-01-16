@@ -18,7 +18,7 @@ const BLink: FC<BLinkProps> = ({ to, ...props }) => {
 				onClick={(e) => {
                     e.nativeEvent.stopImmediatePropagation()
                     e.stopPropagation()
-                    e.preventDefault()
+                    // e.preventDefault()
                 }}
 				{...props}
 			>

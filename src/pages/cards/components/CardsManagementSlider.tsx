@@ -18,6 +18,7 @@ import BButton from "../../../components/Buttons/BButton";
 interface CardsManageMentSliderProps {
 	card?: any;
 	onDeleteImage?: (imageData: ICardImage) => any;
+	onUpdateImage?: (imageData: ICardImage) => any;
 	onDeleteMessage?: (messageData: ICardMessage) => any;
 	onUpdateMessage?: (messageData: ICardMessage) => any;
 	onClickCreateMessage?: () => any;
@@ -26,11 +27,14 @@ interface CardsManageMentSliderProps {
 
 const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 	card,
-	onClickCreateImage=() => console.warn("onClickCreateImage not implemented"),
-	onClickCreateMessage=() => console.warn("onClickCreateMessage not implemented"),
-	onDeleteImage=() => console.warn("onDeleteImage not implemented"),
-	onDeleteMessage=() => console.warn("onDeleteMessage not implemented"),
-	onUpdateMessage=() => console.warn("onUpdateMessage not implemented"),
+	onClickCreateImage = () =>
+		console.warn("onClickCreateImage not implemented"),
+	onClickCreateMessage = () =>
+		console.warn("onClickCreateMessage not implemented"),
+	onDeleteImage = () => console.warn("onDeleteImage not implemented"),
+	onUpdateImage = () => console.warn("onUpdateImage not implemented"),
+	onDeleteMessage = () => console.warn("onDeleteMessage not implemented"),
+	onUpdateMessage = () => console.warn("onUpdateMessage not implemented"),
 }) => {
 	// HOOKS
 	const theme = useTheme();
@@ -45,34 +49,44 @@ const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 
 	const mapCardContents = (cardContent: any, index: number) =>
 		cardContent?.image_url ? (
-			<Slide key={index} style={styles.imageSlide} color={"white"}>
-				<img
-					style={{
-						objectFit: "cover",
-						...styles.imageSlideImage,
-					}}
-					loading="lazy"
-					src={cardContent?.image_url}
-					alt=""
+			<Slide
+				key={index}
+				style={{
+					...styles.imageSlide,
+					...styles.slide,
+					backgroundImage: `url(${cardContent?.image_url})`,
+					backgroundAttachment: "fixed",
+					backgroundPosition: "center",
+					backgroundRepeat: "no-repeat",
+					backgroundSize: "cover",
+				}}
+				color={"white"}
+				onClick={(e: any) => e.stopPropagation()}
+			>
+				<ActionButtons
+					onDelete={() => onDeleteImage && onDeleteImage(cardContent)}
+					onUpdate={() => onUpdateImage && onUpdateImage(cardContent)}
 				/>
-                <BButton onClick={() => onDeleteImage && onDeleteImage(cardContent)}>
-                    <Delete/>
-                </BButton>
 			</Slide>
 		) : (
 			<Slide
 				key={index}
 				style={styles.slide}
 				color={cardContent?.color ?? "white"}
+				onClick={(e: any) => e.stopPropagation()}
 			>
 				<h4 style={{ fontSize: "25px" }}>{cardContent?.heading}</h4>
 				<Typography variant="caption">
 					{cardContent?.content}
 				</Typography>
-                <ActionButtons
-                    onDelete={() => onDeleteMessage && onDeleteMessage(cardContent)}
-                    onUpdate={() => onUpdateMessage && onUpdateMessage(cardContent)}
-                />
+				<ActionButtons
+					onDelete={() =>
+						onDeleteMessage && onDeleteMessage(cardContent)
+					}
+					onUpdate={() =>
+						onUpdateMessage && onUpdateMessage(cardContent)
+					}
+				/>
 			</Slide>
 		);
 
@@ -101,7 +115,7 @@ const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 	return (
 		<Displayer
 			style={{ width: "80%", height: "80vh", marginInline: "auto" }}
-			slides={[...UserSlides, ...ActionSlides]}
+			slides={[ ...ActionSlides, ...UserSlides,]}
 		/>
 	);
 };
@@ -123,6 +137,7 @@ const useStyles = (theme: Theme) => ({
 	imageSlide: {
 		width: "90%",
 		height: "100%",
+
 	},
 	imageSlideImage: {
 		width: "100%",

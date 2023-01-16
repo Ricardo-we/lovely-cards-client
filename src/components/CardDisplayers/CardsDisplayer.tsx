@@ -1,8 +1,10 @@
+import "swiper/css/effect-cube";
+
 import BSwiperSlider, { BSwiperSliderProps } from "../BSwiperSlider";
 import { BaseDisplayer, BaseSlide } from "../../types/BaseDisplayer";
+import { EffectCards, EffectCube } from "swiper";
 import { FC, HTMLAttributes, useEffect } from "react";
 
-import { EffectCards } from "swiper";
 import { children } from "../../types/Components";
 
 export interface CardSlideProps extends BaseSlide {}
@@ -31,6 +33,8 @@ const CardsDisplayer: FC<CardsDisplayerProps> = ({ ...props }) => {
 			grabCursor
 			modules={[EffectCards]}
 			effect="cards"
+			// modules={[EffectCube]}
+			// effect="cube"
 			{...props}
 		/>
 	);

@@ -27,8 +27,16 @@ export default class CardsService {
         return response;
     }
 
-    static getCardsWithContents = async (cardId: number|string, userToken: string) => {
-        const userCards = await cardsRequest.find({ routeParams: `/${cardId}`, headers: cardsRequest.createHeaders(userToken) })
+    static destroyCard = async (cardId: number | string, userToken: string) => {
+        const response = await cardsRequest.destroy({ routeParams: `/${cardId}`, headers: cardsRequest.createHeaders(userToken) })
+        return response;
+    }
+
+    static getCardsWithContents = async (cardId: number|string, userToken?: string) => {
+        const userCards = await cardsRequest.find({ 
+            routeParams: `/${cardId}`, 
+            headers: userToken ? cardsRequest.createHeaders(userToken): {} 
+        })
         return userCards
     }
 }
