@@ -33,8 +33,14 @@ const UserForm: FC<UserFormProps> = ({
 			language_id: "",
 			password: "",
 		},
-		onSubmit: (data) => {
-			onSubmit && onSubmit(data);
+		onSubmit: async (data) => {
+			try {
+				formik.setSubmitting(true)
+				onSubmit && await onSubmit(data);
+				formik.setSubmitting(false);
+			} catch (error) {
+				
+			}
 		},
 		validationSchema: userSchema(language),
 	});
@@ -55,6 +61,7 @@ const UserForm: FC<UserFormProps> = ({
 				style={{marginTop: "150px"}}
 				onSubmit={formik.submitForm}
 				title={formTitle}
+				isSubmitting={formik.isSubmitting}
 				buttonText={buttonText}
 			>
 				<BInput

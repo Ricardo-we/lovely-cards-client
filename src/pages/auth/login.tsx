@@ -13,17 +13,19 @@ export default function Home() {
 	const { language } = useLanguageContext();
 	const { user, setUser } = useAuthContext();
 
-	const handleLogin = async (data: any) => {
+	const handleLogin = (data: any) => {
+		if (!data) return toast.error(language?.generic?.errors?.Error);
 		UsersService.login(data)
 			.then((loggedInUser) => {
+				if (!loggedInUser) return;
 				setUser((prev: any) => ({ ...prev, ...loggedInUser }));
 				router.push("/cards");
 			})
-			.catch((err) => toast.error(err?.toString()));
+			.catch((err) => toast.error(language?.generic?.errors[err?.name]));
 	};
 
 	useEffect(() => {
-		if (user && user?.token) router.push("/cards");
+		if (user && typeof user?.token === "string") router.push("/cards");
 	}, [user]);
 
 	return (

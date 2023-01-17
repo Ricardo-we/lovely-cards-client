@@ -25,11 +25,11 @@ const ActionButtons: FC<ActionButtonsProps> = ({
 	return (
 		<FlexBox
 			align="center"
-			justify="space-around"
+			justify="space-evenly"
 			direction="row"
 			style={{
 				...style,
-				width: "fit-content",
+				width: "auto",
 			}}
 			onClick={e => e.stopPropagation()}
 		>

@@ -121,7 +121,7 @@ const useStyles = (theme: Theme) => ({
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
-		width: "80%",
+		width: "90%",
 		backgroundColor: theme.palette.secondary.main,
 		marginHorizontal: "auto",
 	},

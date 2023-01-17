@@ -88,7 +88,10 @@ const CardsView: FC<CardsViewProps> = () => {
 				onClose={() => setAddCardModalOpen((prev) => !prev)}
 				visible={addCardModalOpen}
 				buttonText={language?.generic?.create}
-				onSubmit={createCard}
+				onSubmit={(data) => {
+					createCard(data)
+					setAddCardModalOpen(false)
+				}}
 				formTitle={language?.view?.cards?.createCard}
 			/>
 
@@ -97,7 +100,10 @@ const CardsView: FC<CardsViewProps> = () => {
 				visible={updateCardModalOpen && selectedCard !== undefined}
 				buttonText={language?.generic?.update}
 				initialValues={selectedCard}
-				onSubmit={updateCard}
+				onSubmit={(data) => {
+					updateCard(data)
+					setUpdateCardModalOpen(false)
+				}}
 				formTitle={language?.view?.cards?.updateCard}
 			/>
 

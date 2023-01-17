@@ -31,7 +31,11 @@
             "image": "Image",
             "color": "Color"
         },
-        "sureToDelete": "Are you sure to delete this item?"
+        "sureToDelete": "Are you sure to delete this item?",
+        "errors": {
+            "Error": "Something went wrong..."
+        },
+        "copied": "Copied!"
     },
     "view": {
         "auth":{

@@ -31,7 +31,11 @@
             "image": "Imagen",
             "color": "Color"
         },
-        "sureToDelete": "¿Está seguro de eliminar este elemento?"
+        "sureToDelete": "¿Está seguro de eliminar este elemento?",
+        "errors": {
+            "Error": "Ha ocurrido un error..."
+        },
+        "copied": "Copiado!"
     },
     "view": {
         "auth":{

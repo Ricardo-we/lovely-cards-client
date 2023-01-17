@@ -1,19 +1,23 @@
 import BList, { BListItem } from "../../../components/BList";
 import { FC, useEffect, useMemo, useState } from "react";
 
+import { APP_CONFIG } from "../../../config/app-settings";
 import ActionButtons from "../../../components/ActionButtons";
 import BButton from "../../../components/Buttons/BButton";
 import BCard from "../../../components/BCard";
 import { ICard } from "../../../types/Card";
 import KeyValueList from "../../../components/KeyValueList";
 import Link from "next/link";
+import LinkIcon from '@mui/icons-material/Link';
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { cutSentence } from "../../../utils/generic/string.utils";
 import { useAudio } from "../../../hooks/useAudio";
 import { useLanguageContext } from "../../../contexts/LanguageContext";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material";
+import { useWindow } from "../../../hooks/useWindow";
 
 interface CardListItemProps {
 	card?: ICard;
@@ -27,9 +31,20 @@ const UserCardListItem: FC<CardListItemProps> = ({
 	onUpdate,
 }) => {
 	const router = useRouter();
+	const window_ = useWindow()
 	const { toggleAudioActive, audioActive } = useAudio(card?.music);
 	const { language } = useLanguageContext();
 	const { palette } = useTheme();
+
+	const [isCopying, setIsCopying] = useState<boolean>(false);
+
+	const handleCopyLink = (cardId: string | number) => {
+		setIsCopying(true)
+		if(typeof window_ !== "undefined")
+			window_.navigator.clipboard.writeText(`${APP_CONFIG.CLIENT_URL}/card/${cardId}`);
+
+		setTimeout(() => setIsCopying(false), 1300)
+	}
 
 	if (!card?.id) return null;
 	return (
@@ -79,6 +94,22 @@ const UserCardListItem: FC<CardListItemProps> = ({
 							onClick={toggleAudioActive}
 						>
 							{audioActive ? <PauseIcon /> : <PlayArrowIcon />}
+						</BButton>
+						
+						<BButton
+							variant="contained"
+							color="success"
+							onClick={() => handleCopyLink(card?.id)}
+						>
+							{isCopying ? language?.generic?.copied : <LinkIcon/>}
+						</BButton>
+
+						<BButton
+							variant="contained"
+							color="secondary"
+							onClick={() => router.push(`/card/${card.id}`)}
+						>
+							<VisibilityIcon />
 						</BButton>
 					</ActionButtons>
 				}
