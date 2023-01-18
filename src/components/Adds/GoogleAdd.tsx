@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 
+import { APP_CONFIG } from "../../config/app-settings";
 import { Adsense } from "@ctrl/react-adsense";
 import Head from "next/head";
 import Script from "next/script";
@@ -10,13 +11,11 @@ const GoogleAdd: FC<GoogleAddProps> = () => {
 	return (
 		<>
 			<Head>
-            {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1781111148404359"
-     crossorigin="anonymous"></script> */}
 				<Script
                     async 
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1781111148404359"
-					data-ad-client="ca-pub-1781111148404359"
-                    slot="7309166307"
+                    src={APP_CONFIG.GOOGLE_ADDS.src}
+					data-ad-client={APP_CONFIG.GOOGLE_ADDS.dataClient}
+                    slot={APP_CONFIG.GOOGLE_ADDS.slot}
 					// crossorigin="anonymous"
 					onError={console.error}
 				/>
