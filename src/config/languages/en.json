@@ -35,7 +35,17 @@
         "errors": {
             "Error": "Something went wrong..."
         },
-        "copied": "Copied!"
+        "copied": "Copied!",
+        "copy": "Copy",
+        "playMusic": "Start music",
+        "edit": "Edit",
+        "checkDetails": "Ver detalles",
+        "addImage": "Add image",
+        "addMessage": "Add message",
+        "voidUserSlides": "You can add images and messages with the top buttons!",
+        "sampleText": "Sample",
+        "emailLinkMask": "Our email",
+        "checkCardContents": "Check card contents"
     },
     "view": {
         "auth":{
@@ -54,6 +64,18 @@
         "cardImage": {
             "createImage": "Add image",
             "updateImage": "Update image"
+        },
+        "homepage": {
+            "startTitle": "Lovely Cards",
+            "startBody": "Lovely Cards is an application where you can create cards with many styles, colors, shapes and even music for free!",
+            "free": "Free",
+            "freeDescription": "Without limits",
+            "easy": "Easy to use",
+            "easyDescription": "Lovely cards is easy and fast to get started",
+            "customizable": "Customizable",
+            "customizableDescription": "Each part of your card is customizable",
+            "aboutUs": "About us",
+            "aboutUsDescription": "Lovely cards It is a small project to make letters to the family, romantic letters, etc. We are constantly updating, any questions or problems you can report to the following email"
         }
     }, 
     "fields": {
@@ -71,6 +93,8 @@
         "color": "Color",
         "image": "Image",
         "imageUrl": "Image link/url",
-        "isUrl": "Use image link/url"
+        "isUrl": "Use image link/url",
+        "textColor": "Text color",
+        "autoPlay": "Move slides automatically"
     }
 }

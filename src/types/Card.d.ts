@@ -9,6 +9,7 @@ export interface ICard extends SequleizeBaseModel {
     card_background_type: "decorated_image" | "image" | "color"
     user_id?: number;
     card_type?: string;
+    auto_play?: boolean;
 }
 
 export interface ICardMessage extends SequleizeBaseModel{
@@ -17,6 +18,7 @@ export interface ICardMessage extends SequleizeBaseModel{
     color?: string
     card_id?: number | string;
     orderNumber?: number;
+    textColor?: string;
 }
 
 export interface ICardImage extends SequleizeBaseModel {

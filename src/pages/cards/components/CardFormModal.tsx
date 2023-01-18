@@ -6,6 +6,7 @@ import BFilePicker from "../../../components/fields/BFilePicker";
 import BInput from "../../../components/fields/BInput";
 import BModal from "../../../components/BModal";
 import BSelect from "../../../components/fields/BSelect";
+import BSwitch from "../../../components/fields/BSwitch";
 import BaseForm from "../../../components/BaseForm";
 import { Helper } from "../../../types/Helpers";
 import HelperService from "../../../services/api/HelperService";
@@ -30,6 +31,7 @@ const PLAIN_CARD_DATA = {
 	title: "",
 	card_background_type: "color",
 	card_type: "flip",
+	auto_play: false
 };
 const CARD_TYPES_CATEGORIE_NAME = "card_types";
 const CARD_BACKGROUND_TYPES_NAME = "card_background_types";
@@ -84,12 +86,14 @@ const CardFormModal: FC<CardFormModalProps> = ({
 		getCardTypes();
 	}, []);
 
-
-
 	return (
 		<>
 			<ToastContainer />
-			<BModal visible={visible} onClose={() => onClose && onClose()}>
+			<BModal
+				style={{ backgroundColor: formik.values?.card_background }}
+				visible={visible}
+				onClose={() => onClose && onClose()}
+			>
 				<BaseForm
 					onSubmit={formik.submitForm}
 					buttonText={buttonText}
@@ -131,7 +135,16 @@ const CardFormModal: FC<CardFormModalProps> = ({
 						}))}
 					/>
 
-					<BSelect
+					<BSwitch
+						label={language?.fields?.autoPlay}
+						onChange={(e) =>
+							formik.setFieldValue("auto_play", e.target.checked)
+						}
+						checked={formik.values?.auto_play}
+					/>
+
+					{/*** @FUTURE @VERSIONS */}
+					{/* <BSelect
 						label={language?.fields?.backgroundType}
 						name="card_background_type"
 						value={formik.values?.card_background_type}
@@ -141,7 +154,7 @@ const CardFormModal: FC<CardFormModalProps> = ({
 							value: bgType.code,
 						}))}
 						error={formik.errors?.card_background_type}
-					/>
+					/> */}
 				</BaseForm>
 			</BModal>
 		</>

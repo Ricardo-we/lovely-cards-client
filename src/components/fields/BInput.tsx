@@ -1,6 +1,7 @@
 import { CSSProperties, FC } from "react";
 import { InputProps, StandardTextFieldProps, TextField, TextFieldProps } from "@mui/material";
-import { getISODate, getISODateTime } from "../../utils/generic/date.utils";
+
+import { getISODate } from "../../utils/generic/date.utils";
 
 interface BInputProps extends StandardTextFieldProps {
 	error?: any;
@@ -16,6 +17,7 @@ interface BInputProps extends StandardTextFieldProps {
 	maxRows?: number;
 	disabled?: boolean;
 	autoFocus?: boolean
+	inputColors?: string;
 }
 
 const BInput: FC<BInputProps> = ({
@@ -25,6 +27,7 @@ const BInput: FC<BInputProps> = ({
 	value,
 	variant = "standard",
 	disabled = false,
+	inputColors,
 	...props
 }) => {
 	const hasError = error?.length > 0;
@@ -38,10 +41,19 @@ const BInput: FC<BInputProps> = ({
 			name={name}
 			onChange={onChange}
 			value={isTypeDate? getISODate(value) : value}
-			style={{ margin: 16, width: "100%", ...props.style }}
+			style={{...props.style, margin: 16, width: "100%",color: inputColors }}
 			InputLabelProps={{
 				shrink: isTypeDate ? true : undefined,
+				style: {
+					...props.style,
+					color: inputColors,
+				},
 			}}
+		
+			inputProps={{
+				style: { color: inputColors }
+			}}
+			
 			disabled={disabled}
 			{...props}
 		/>

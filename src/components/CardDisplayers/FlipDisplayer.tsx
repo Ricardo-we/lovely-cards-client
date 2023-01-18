@@ -14,11 +14,12 @@ export const FlipSlide = ({ children, color, ...props }: CardSlideProps) => {
 		<div
 			{...props}
 			style={{
-				borderRadius: "10px",
-                height: "100%",
+				// borderRadius: "10px",
 				...props.style,
+                height: "100%",
                 width: "100%",
 				backgroundColor: color,
+				transform: "translate3d(0px,0px,10px)"
 			}}
 		>
 			{children}

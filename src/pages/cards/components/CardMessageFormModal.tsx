@@ -24,6 +24,7 @@ const PLAIN_CARD_MESSAGE = {
 	content: "",
 	color: "#fff",
 	card_id: null,
+	textColor: "#000"
 };
 
 const CardMessageFormModal: FC<CardMessageFormModalProps> = ({
@@ -37,9 +38,12 @@ const CardMessageFormModal: FC<CardMessageFormModalProps> = ({
 }) => {
 	const { language } = useLanguageContext();
 
-	const handleSubmit = async (values: any, formikHelpers: FormikHelpers<any>) => {
+	const handleSubmit = async (
+		values: any,
+		formikHelpers: FormikHelpers<any>,
+	) => {
 		formikHelpers.setSubmitting(true);
-		onSubmit && await onSubmit(values);
+		onSubmit && (await onSubmit(values));
 		formikHelpers.setSubmitting(false);
 		resetOnSubmit && formikHelpers.resetForm();
 	};
@@ -48,13 +52,17 @@ const CardMessageFormModal: FC<CardMessageFormModalProps> = ({
 		{
 			initialValues,
 			onSubmit: handleSubmit,
-			validationSchema: cardMessageSchema(language)
+			validationSchema: cardMessageSchema(language),
 		},
 		initialValues,
 	);
 
 	return (
-		<BModal style={{ backgroundColor: formik.values?.color }} visible={visible} onClose={() => onClose && onClose()}>
+		<BModal
+			style={{ backgroundColor: formik.values?.color }}
+			visible={visible}
+			onClose={() => onClose && onClose()}
+		>
 			<BaseForm
 				onSubmit={formik.submitForm}
 				buttonText={buttonText}
@@ -67,8 +75,9 @@ const CardMessageFormModal: FC<CardMessageFormModalProps> = ({
 					error={formik.errors.heading}
 					label={language?.fields?.heading}
 					value={formik.values.heading}
+					// style={{color: formik.values?.textColor}}
+					inputColors={formik.values?.textColor}
 				/>
-
 
 				<BInput
 					name="content"
@@ -77,13 +86,21 @@ const CardMessageFormModal: FC<CardMessageFormModalProps> = ({
 					label={language?.fields?.content}
 					value={formik.values.content}
 					multiline
-					sx={{minWidth: "100px"}}
+					// style={{color: formik.values?.textColor}}
+					inputColors={formik.values?.textColor}
+					sx={{ minWidth: "100px" }}
 				/>
 
 				<BColorPicker
-					onChange={(color) => formik.setFieldValue("color",color)}
+					onChange={(color) => formik.setFieldValue("color", color)}
 					label={language?.fields?.color}
-					value={formik?.values?.color}
+					value={formik?.values?.color} 
+				/>
+
+				<BColorPicker
+					onChange={(color) => formik.setFieldValue("textColor", color)}
+					label={language?.fields?.textColor}
+					value={formik?.values?.textColor}
 				/>
 			</BaseForm>
 		</BModal>

@@ -10,6 +10,8 @@ import PencilIcon from "@mui/icons-material/Create";
 interface ActionButtonsProps {
 	onDelete?: () => any;
 	onUpdate?: () => any;
+	onUpdateProps?: any;
+	onDeleteProps?: any;
 	children?: JSX.Element | JSX.Element[] | string[] | string;
 	variant?:  "text" | "outlined" | "contained";
 	style?: any;
@@ -21,6 +23,8 @@ const ActionButtons: FC<ActionButtonsProps> = ({
 	children,
 	variant="contained",
 	style,
+	onDeleteProps,
+	onUpdateProps
 }) => {
 	return (
 		<FlexBox
@@ -30,13 +34,14 @@ const ActionButtons: FC<ActionButtonsProps> = ({
 			style={{
 				...style,
 				width: "auto",
+				gap: "6px"
 			}}
 			onClick={e => e.stopPropagation()}
 		>
-			<BButton variant={variant} onClick={() => onDelete && onDelete()} color="error">
+			<BButton  variant={variant} onClick={() => onDelete && onDelete()} color="error" {...onDeleteProps}>
 				<DeleteForeverIcon />
 			</BButton>
-			<BButton variant={variant} onClick={() => onUpdate && onUpdate()} color="primary">
+			<BButton variant={variant} onClick={() => onUpdate && onUpdate()} color="primary" {...onUpdateProps} >
 				<PencilIcon />
 			</BButton>
 			{children}

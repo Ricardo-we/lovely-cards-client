@@ -13,6 +13,7 @@ import { GetServerSideProps } from "next";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useAudio } from "../../hooks/useAudio";
+import { useLanguageContext } from "../../contexts/LanguageContext";
 
 interface CardViewProps {
 	card: any;
@@ -24,7 +25,7 @@ const CardView: FC<CardViewProps> = ({ card, error }) => {
 	const styles = useStyles(theme);
 	const { toggleAudioActive, audioActive } = useAudio(card?.music);
 	// const router = useRouter();
-	// const { language } = useLanguageContext();
+	const { language } = useLanguageContext();
 
 	// DYNAMIC COMPONENTS
 	const Displayer = getCardDisplayer(card?.card_type);
@@ -53,8 +54,8 @@ const CardView: FC<CardViewProps> = ({ card, error }) => {
 				color={cardContent?.color ?? "white"}
 				onClick={(e: any) => e.stopPropagation()}
 			>
-				<h4 style={{ fontSize: "25px" }}>{cardContent?.heading}</h4>
-				<Typography variant="caption">
+				<h4 style={{ color: cardContent?.textColor, fontSize: "25px" }}>{cardContent?.heading}</h4>
+				<Typography style={{ color: cardContent?.textColor }} variant="caption">
 					{cardContent?.content}
 				</Typography>
 			</Slide>
@@ -82,12 +83,14 @@ const CardView: FC<CardViewProps> = ({ card, error }) => {
 					variant="contained"
 					color="info"
 					onClick={toggleAudioActive}
+					title={language?.generic?.playMusic}
 				>
 					{audioActive ? <PauseIcon /> : <PlayArrowIcon />}
 				</BButton>
 			</FlexBox>
             
 			<Displayer
+				autoPlay={card?.auto_play}
 				style={{ width: "80%", height: "80vh", marginInline: "auto" }}
 				slides={card?.cardContents?.map(mapCardContents)}
 			/>

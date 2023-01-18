@@ -9,7 +9,6 @@ const SLIDES = new Map<string, FC>();
 SLIDES.set("cards", CardSlide);
 SLIDES.set("flip", FlipSlide);
 SLIDES.set("cube", CubeSlide);
-SLIDES.set("cube", CubeSlide);
 SLIDES.set("slides", CreativeSlide);
 
 const DISPLAYERS = new Map<string, FC>();

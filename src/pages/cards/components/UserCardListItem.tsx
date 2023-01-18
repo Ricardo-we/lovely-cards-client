@@ -6,6 +6,7 @@ import ActionButtons from "../../../components/ActionButtons";
 import BButton from "../../../components/Buttons/BButton";
 import BCard from "../../../components/BCard";
 import { ICard } from "../../../types/Card";
+import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import KeyValueList from "../../../components/KeyValueList";
 import Link from "next/link";
 import LinkIcon from '@mui/icons-material/Link';
@@ -87,11 +88,23 @@ const UserCardListItem: FC<CardListItemProps> = ({
 								? onUpdate(card)
 								: console.warn("onUpdateFunction not defined")
 						}
+						onUpdateProps={{title: language?.generic?.edit}}
+						onDeleteProps={{title: language?.generic?.delete}}
 					>
+						<BButton
+							variant="contained"
+							color="primary"
+							title={language?.generic?.checkCardContents}
+							onClick={() => router.push(`/cards/${card.id}`)}
+						>
+							<ImportContactsIcon />
+						</BButton>
+
 						<BButton
 							variant="contained"
 							color="info"
 							onClick={toggleAudioActive}
+							title={language?.generic?.playMusic}
 						>
 							{audioActive ? <PauseIcon /> : <PlayArrowIcon />}
 						</BButton>
@@ -99,6 +112,7 @@ const UserCardListItem: FC<CardListItemProps> = ({
 						<BButton
 							variant="contained"
 							color="success"
+							title={language?.generic?.copy}
 							onClick={() => handleCopyLink(card?.id)}
 						>
 							{isCopying ? language?.generic?.copied : <LinkIcon/>}
@@ -107,10 +121,13 @@ const UserCardListItem: FC<CardListItemProps> = ({
 						<BButton
 							variant="contained"
 							color="secondary"
+							title={language?.generic?.checkDetails}
 							onClick={() => router.push(`/card/${card.id}`)}
 						>
 							<VisibilityIcon />
 						</BButton>
+
+						
 					</ActionButtons>
 				}
 			>

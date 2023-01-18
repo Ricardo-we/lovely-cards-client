@@ -63,6 +63,7 @@ const BaseForm: FC<BaseFormProps> = ({
 				{title}
 			</Typography>
 			<FlexBox
+				direction="column"
 				style={{ width: "100%" }}
 				align="center"
 				justify="space-evenly"

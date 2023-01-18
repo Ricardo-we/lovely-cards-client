@@ -1,4 +1,4 @@
-import { CSSProperties, FC, useRef, useState } from "react";
+import { CSSProperties, FC, useEffect, useRef, useState } from "react";
 import {
 	FormControl,
 	InputLabel,
@@ -41,15 +41,25 @@ const BSelect: FC<BSelectProps> = ({
 }) => {
 	const [page, setPage] = useState<number>(1);
 	const [search, setSearch] = useState<string>("");
+	// const [valueHandler, setValueHandler] = useState<any>(value);
+	// // console.log(value);
+
+	// useEffect(() => {
+	// 	if(value) setValueHandler(value);
+	// }, [value])
 
 	return (
 		<FormControl sx={{ marginBlock:2, paddingInline: 0.5, width: "100%", ...selectContainerStyle,  }}>
 			<InputLabel>{label}</InputLabel>
 			<Select
+				// value={valueHandler}
 				value={value}
 				name={name}
 				variant="standard"
-				onChange={onChange}
+				onChange={(event) => {
+					onChange && onChange(event);
+					// setValueHandler(event.target.value)
+				}}
 				label={label}
 				error={error}
 				MenuProps={{ autoFocus: false }}
@@ -82,7 +92,7 @@ const BSelect: FC<BSelectProps> = ({
 								.includes(search?.toLowerCase()),
 						)
 						?.map((item, index) => (
-							<MenuItem key={index} value={item.value}>
+							<MenuItem selected={value === item.value} key={index} value={item.value}>
 								{item.label || item.value}
 							</MenuItem>
 						))}

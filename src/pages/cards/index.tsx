@@ -6,6 +6,7 @@ import CardFormModal from "./components/CardFormModal";
 import CardsService from "../../services/api/CardsService";
 import DeleteDialog from "../../components/DeleteDialog";
 import FlexBox from "../../components/FlexBox";
+import GoogleAdd from "../../components/Adds/GoogleAdd";
 import { ICard } from "../../types/Card";
 import { IconButton } from "@mui/material";
 import UserCardsList from "./components/UserCardsList";
@@ -131,6 +132,8 @@ const CardsView: FC<CardsViewProps> = () => {
 				}}
 				cards={cards}
 			/>
+
+			<GoogleAdd/>
 		</>
 	);
 };

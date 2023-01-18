@@ -35,7 +35,18 @@
         "errors": {
             "Error": "Ha ocurrido un error..."
         },
-        "copied": "Copiado!"
+        "copied": "Copiado!",
+        "copy": "Copiar",
+        "playMusic": "Iniciar música",
+        "edit": "Editar",
+        "checkDetails": "Ver resultado",
+        "addImage": "Añadir imagen",
+        "addMessage": "Añadir mensaje",
+        "voidUserSlides": "¡Puedes añadir mensajes e imagenes con los botones de arriba!",
+        "sampleText": "Ejemplo",
+        "emailLinkMask": "Nuestro correo electrónico",
+        "author": "Autor",
+        "checkCardContents": "Ver contenidos de la carta"
     },
     "view": {
         "auth":{
@@ -54,6 +65,18 @@
         "cardImage": {
             "createImage": "Añadir imagen",
             "updateImage": "Actualizar imagen"
+        },
+        "homepage": {
+            "startTitle": "Lovely Cards",
+            "startBody": "Lovely Cards es una aplicación donde puedes crear cartas con muchos estilos, colores, formas e incluso música  totalmente gratis!",
+            "free": "Gratis",
+            "freeDescription": "Sin limites",
+            "easy": "Fácil de utilizar",
+            "easyDescription": "Lovely cards es fácil y rápido de utilizar",
+            "customizable": "Personalizable",
+            "customizableDescription": "Cada carta es personalizable a tu gusto",
+            "aboutUs": "Sobre nosotros",
+            "aboutUsDescription": "Lovely cards es un pequeño proyecto para realizar cartas a la familia, románticas, etc. Estamos en constante actualización, cualquier duda o problema puedes reportarlo al correo siguiente"
         }
     },
     "fields": {
@@ -71,6 +94,8 @@
         "color": "Color",
         "image": "Imagen",
         "imageUrl": "Link/URL de imagen",
-        "isUrl": "Utilizar link/url de imagen"
+        "isUrl": "Utilizar link/url de imagen",
+        "textColor": "Color del texto",
+        "autoPlay": "Mover slides automáticamente"
     }
 }

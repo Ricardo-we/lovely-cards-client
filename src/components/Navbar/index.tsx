@@ -22,6 +22,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { NextNavRoute } from "../../types/NextNavRoute";
 import { firstLetterUpperCase } from "../../utils/generic/string.utils";
 import { mainLayoutRoutes } from "../../config/routes/navbar-main-layout.routes";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { useLanguageContext } from "../../contexts/LanguageContext";
 
 interface NavbarProps {
@@ -65,6 +66,7 @@ const AppBarWrapper = ({ children }: any) => {
 const Navbar: FC<NavbarProps> = ({  }) => {
 	const [navbarOpen, setNavBarOpen] = useState<boolean>(false);
 	const { language } = useLanguageContext();
+	const { user } = useAuthContext();
 	const routeList = mainLayoutRoutes(language);
 
 	return (
@@ -94,7 +96,7 @@ const Navbar: FC<NavbarProps> = ({  }) => {
 				</Typography>
 				
 				<BList sx={{ minWidth: 300 }}>
-					{routeList?.map((route, index) => (
+					{routeList?.filter((route, index) => route?.requireAuth ? !!user?.token : true)?.map((route, index) => (
 						<NavBarLink key={index} to={route.route}>{route.label}</NavBarLink>
 					))}
 				</BList>

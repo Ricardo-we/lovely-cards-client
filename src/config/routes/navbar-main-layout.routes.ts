@@ -16,6 +16,7 @@ export const mainLayoutRoutes = (language: LanguageTranslationJson | any): NextN
     },
     {
         label: language?.generic?.myCards as string,
-        route: "/cards"
+        route: "/cards",
+        requireAuth: true
     }
 ]

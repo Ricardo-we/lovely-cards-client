@@ -4,7 +4,7 @@ import {
 	Image as ImageIcon,
 	Message as MessageIcon,
 } from "@mui/icons-material";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { ICardImage, ICardMessage } from "../../../types/Card";
 import { Theme, Typography, useTheme } from "@mui/material";
 import {
@@ -14,6 +14,8 @@ import {
 
 import ActionButtons from "../../../components/ActionButtons";
 import BButton from "../../../components/Buttons/BButton";
+import FlexBox from "../../../components/FlexBox";
+import { useLanguageContext } from "../../../contexts/LanguageContext";
 
 interface CardsManageMentSliderProps {
 	card?: any;
@@ -39,9 +41,13 @@ const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 	// HOOKS
 	const theme = useTheme();
 	const styles = useStyles(theme);
+	const { language } = useLanguageContext();
 
 	// STATE
 	const [cardContents, setCardContents] = useState(card?.cardContents || []);
+
+	// REFS
+	const swiperRef = useRef<any>(null);
 
 	// DYNAMIC COMPONENTS
 	const Displayer = getCardDisplayer(card?.card_type);
@@ -61,7 +67,6 @@ const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 					backgroundSize: "cover",
 				}}
 				color={"white"}
-				onClick={(e: any) => e.stopPropagation()}
 			>
 				<ActionButtons
 					onDelete={() => onDeleteImage && onDeleteImage(cardContent)}
@@ -73,10 +78,15 @@ const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 				key={index}
 				style={styles.slide}
 				color={cardContent?.color ?? "white"}
-				onClick={(e: any) => e.stopPropagation()}
+				// onClick={(e: any) => e.stopPropagation()}
 			>
-				<h4 style={{ fontSize: "25px" }}>{cardContent?.heading}</h4>
-				<Typography variant="caption">
+				<h4 style={{ color: cardContent?.textColor, fontSize: "25px" }}>
+					{cardContent?.heading}
+				</h4>
+				<Typography
+					style={{ color: cardContent?.textColor }}
+					variant="caption"
+				>
 					{cardContent?.content}
 				</Typography>
 				<ActionButtons
@@ -90,33 +100,80 @@ const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 			</Slide>
 		);
 
-	const ActionSlides = [
-		<Slide style={styles.slide} color={theme.palette.secondary.main}>
-			<BButton onClick={onClickCreateImage} style={styles.slideButton}>
-				<Add />
-				<ImageIcon />
-			</BButton>
-		</Slide>,
-		<Slide style={styles.slide} color={theme.palette.secondary.main}>
-			<BButton onClick={onClickCreateMessage} style={styles.slideButton}>
-				<Add />
-				<MessageIcon />
-			</BButton>
-		</Slide>,
-	];
-
 	const UserSlides =
-		cardContents?.length > 0 ? cardContents?.map(mapCardContents) : [];
+		cardContents?.length > 0
+			? cardContents?.map(mapCardContents)
+			: [
+					<Slide
+						style={styles.slide}
+						color={theme.palette.secondary.main}
+					>
+						<Typography
+							style={{ width: "100%", textAlign: "center" }}
+							color="white"
+							variant="h6"
+						>
+							{language?.generic?.voidUserSlides}
+						</Typography>
+					</Slide>,
+			  ];
+			  
 
 	useEffect(() => {
 		if (card?.cardContents) setCardContents(card?.cardContents);
 	}, [card?.cardContents]);
 
+	useEffect(() => {
+		if(card?.cardContents && swiperRef.current !== null)
+			swiperRef.current?.slideTo(cardContents?.length - 1);
+	}, [cardContents, swiperRef.current]);
+
+	
 	return (
-		<Displayer
-			style={{ width: "80%", height: "80vh", marginInline: "auto" }}
-			slides={[ ...ActionSlides, ...UserSlides,]}
-		/>
+		<FlexBox
+			style={{ width: "100%", minWidth: "200px" }}
+			direction="column"
+		>
+			<FlexBox
+				style={{
+					marginBottom: "20px",
+					width: "80%",
+					marginInline: "auto",
+				}}
+				align="center"
+				justify="flex-start"
+			>
+				<BButton
+					variant="contained"
+					onClick={onClickCreateImage}
+					title={language?.generic?.addImage}
+					style={styles.slideButton}
+				>
+					<ImageIcon />
+					<Add />
+				</BButton>
+
+				<BButton
+					variant="contained"
+					onClick={onClickCreateMessage}
+					title={language?.generic?.addMessage}
+					style={styles.slideButton}
+				>
+					<MessageIcon />
+					<Add />
+				</BButton>
+			</FlexBox>
+
+			<Displayer
+				style={{ width: "80%", height: "80vh", marginInline: "auto" }}
+				slides={[
+					// ...ActionSlides,
+					...UserSlides,
+				]}
+				onSwiper={(swiper: any) => swiperRef.current = swiper}
+				autoPlay={card.auto_play}
+			/>
+		</FlexBox>
 	);
 };
 
@@ -130,14 +187,15 @@ const useStyles = (theme: Theme) => ({
 		backgroundColor: theme.palette.secondary.main,
 		marginHorizontal: "auto",
 	},
+
 	slideButton: {
-		width: "80%",
-		height: "80%",
+		width: "60px",
+		height: "45px",
+		marginRight: "10px",
 	},
 	imageSlide: {
 		width: "90%",
 		height: "100%",
-
 	},
 	imageSlideImage: {
 		width: "100%",
@@ -147,3 +205,26 @@ const useStyles = (theme: Theme) => ({
 });
 
 export default CardsManagementSlider;
+
+// const ActionSlides = [
+// 	<Slide style={styles.slide} color={theme.palette.secondary.main}>
+// 		<BButton
+// 			variant="outlined"
+// 			onClick={onClickCreateImage}
+// 			style={styles.slideButton}
+// 		>
+// 			<Add />
+// 			<ImageIcon />
+// 		</BButton>
+// 	</Slide>,
+// 	<Slide style={styles.slide} color={theme.palette.secondary.main}>
+// 		<BButton
+// 			variant="outlined"
+// 			onClick={onClickCreateMessage}
+// 			style={styles.slideButton}
+// 		>
+// 			<Add />
+// 			<MessageIcon />
+// 		</BButton>
+// 	</Slide>,
+// ];

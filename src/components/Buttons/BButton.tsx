@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@mui/material";
+import { Button, ButtonProps, Tooltip } from "@mui/material";
 import { CSSProperties, FC, MouseEvent } from "react";
 
 interface BButtonProps extends ButtonProps {
@@ -20,10 +20,25 @@ const BButton: FC<BButtonProps> = ({
 	onClick,
 	style,
 	color,
+	title,
 	...props
 }) => {
+	if (title)
+		return (
+			<Tooltip title={title}>
+				<Button
+					onClick={onClick}
+					style={{ ...style }}
+					color={color}
+					{...props}
+				>
+					{children}
+				</Button>
+			</Tooltip>
+		);
+		
 	return (
-		<Button onClick={onClick} style={{ ...style }} color={color}  {...props}>
+		<Button onClick={onClick} style={{ ...style }} color={color} {...props} >
 			{children}
 		</Button>
 	);
