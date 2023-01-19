@@ -10,16 +10,14 @@ interface GoogleAddProps {}
 const GoogleAdd: FC<GoogleAddProps> = () => {
 	return (
 		<>
-			<Head>
-				<Script
-                    async 
-                    src={APP_CONFIG.GOOGLE_ADDS.src}
-					data-ad-client={APP_CONFIG.GOOGLE_ADDS.dataClient}
-                    slot={APP_CONFIG.GOOGLE_ADDS.slot}
-					// crossorigin="anonymous"
-					onError={console.error}
-				/>
-			</Head>
+			<Script
+				async
+				src={APP_CONFIG.GOOGLE_ADDS.src}
+				data-ad-client={APP_CONFIG.GOOGLE_ADDS.dataClient}
+				slot={APP_CONFIG.GOOGLE_ADDS.slot}
+				// crossorigin="anonymous"
+				onError={console.error}
+			/>
 			<Adsense
 				responsive="true"
 				adTest="on"

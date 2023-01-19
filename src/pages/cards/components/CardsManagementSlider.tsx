@@ -107,6 +107,7 @@ const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 					<Slide
 						style={styles.slide}
 						color={theme.palette.secondary.main}
+						key={1}
 					>
 						<Typography
 							style={{ width: "100%", textAlign: "center" }}
