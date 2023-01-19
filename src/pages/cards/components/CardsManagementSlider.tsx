@@ -172,7 +172,7 @@ const CardsManagementSlider: FC<CardsManageMentSliderProps> = ({
 					...UserSlides,
 				]}
 				onSwiper={(swiper: any) => swiperRef.current = swiper}
-				autoPlay={card.auto_play}
+				autoPlay={card?.auto_play}
 			/>
 		</FlexBox>
 	);
