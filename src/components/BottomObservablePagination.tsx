@@ -6,7 +6,7 @@ interface BottomObservableProps {
     loading?:boolean
 }
  
-const BottomObservablePagination = forwardRef(({loading=false}:BottomObservableProps, ref: LegacyRef<HTMLDivElement>) => {
+export const BottomObservablePagination = forwardRef(({loading=false}:BottomObservableProps, ref: LegacyRef<HTMLDivElement>) => {
 
     return ( 
         <>
@@ -18,4 +18,3 @@ const BottomObservablePagination = forwardRef(({loading=false}:BottomObservableP
     );
 })
  
-export default BottomObservablePagination;
