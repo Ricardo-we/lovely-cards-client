@@ -1,6 +1,7 @@
 
 export const APP_CONFIG = {
-    API_URL: "http://localhost:8000",
+    // API_URL: "http://localhost:8000",
+    API_URL: "https://lovely-cards-api-v2.onrender.com",
     appName: "lovely-cards",
     CLIENT_URL: "http://localhost:3000",
     CONTACT_EMAIL: "testerricardo50@gmail.com",
