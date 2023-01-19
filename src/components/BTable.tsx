@@ -11,7 +11,7 @@ import {
 	useTheme,
 } from "@mui/material";
 
-import { CSSProperties } from "@mui/styled-engine";
+import { CSSProperties } from "react";
 import { FC } from "react";
 import { children } from "../types/Components";
 
