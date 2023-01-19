@@ -45,7 +45,8 @@
         "voidUserSlides": "You can add images and messages with the top buttons!",
         "sampleText": "Sample",
         "emailLinkMask": "Our email",
-        "checkCardContents": "Check card contents"
+        "checkCardContents": "Check card contents",
+        "notFound": "Not found"
     },
     "view": {
         "auth":{

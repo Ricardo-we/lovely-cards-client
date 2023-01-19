@@ -61,11 +61,9 @@ const CardView: FC<CardViewProps> = ({ card, error }) => {
 			</Slide>
 		);
 
-	if (!card || error)
+	if (!card  || card?.cardContents?.length <=0 || error)
 		return (
-			<>
-				<h3>Card not found :C</h3>
-			</>
+				<h3>{language?.generic?.notFound}</h3>
 		);
 
 	return (

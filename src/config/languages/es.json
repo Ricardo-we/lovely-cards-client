@@ -46,7 +46,8 @@
         "sampleText": "Ejemplo",
         "emailLinkMask": "Nuestro correo electrónico",
         "author": "Autor",
-        "checkCardContents": "Ver contenidos de la carta"
+        "checkCardContents": "Ver contenidos de la carta",
+        "notFound": "No se encontró"
     },
     "view": {
         "auth":{
