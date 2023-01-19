@@ -5,7 +5,7 @@ const nextConfig = {
 		ignoreDuringBuilds: true,
 	},
 	staticPageGenerationTimeout: 1500,
-	pageExtensions: ['page.tsx',  'page.jsx',]
+	pageExtensions: ['tsx',  'jsx',]
 };
 
 module.exports = nextConfig;
