@@ -133,7 +133,9 @@ const CardsView: FC<CardsViewProps> = () => {
 				cards={cards}
 			/>
 
-			<GoogleAdd/>
+			<GoogleAdd
+			
+			/>
 		</>
 	);
 };

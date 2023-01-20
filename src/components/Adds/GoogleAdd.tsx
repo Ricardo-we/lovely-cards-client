@@ -13,14 +13,16 @@ const GoogleAdd: FC<GoogleAddProps> = () => {
 			<ins
 				className="adsbygoogle"
 				// style="display:block"
+				style={{display: "inline-block"}}
 				data-ad-client={APP_CONFIG.GOOGLE_ADDS.dataClient}
 				data-ad-slot={APP_CONFIG.GOOGLE_ADDS.slot}
 				data-ad-format="auto"
 				data-full-width-responsive="true"
 			></ins>
+			
 			<script
 				dangerouslySetInnerHTML={{__html:`
-				(adsbygoogle = window.adsbygoogle || []).push({});	
+					(adsbygoogle = window.adsbygoogle || []).push({});	
 				`}}
 			/>
 			
