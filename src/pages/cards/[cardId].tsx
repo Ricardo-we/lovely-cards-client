@@ -266,7 +266,7 @@ const CardDetails: FC<CardDetailsProps> = () => {
 				}}
 			/>
 			
-			<GoogleAdd/>
+			{/* <GoogleAdd/> */}
 		</main>
 	);
 };
