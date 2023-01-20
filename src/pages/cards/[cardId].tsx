@@ -3,7 +3,7 @@ import {
 	Image as ImageIcon,
 	Message as MessageIcon,
 } from "@mui/icons-material";
-import { FC, useEffect, useState } from "react";
+import { CSSProperties, FC, useEffect, useState } from "react";
 import { ICard, ICardImage, ICardMessage } from "../../types/Card";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -147,7 +147,7 @@ const CardDetails: FC<CardDetailsProps> = () => {
 	}, [user?.token, cardId]);
 
 	return (
-		<main style={styles.mainContainer}>
+		<main style={styles.mainContainer as CSSProperties}>
 			<ToastContainer />
 
 			{/* CARD-MESSAGE-CRUD OPERATIONS */}
@@ -275,6 +275,7 @@ const useStyles = (theme: any, { card }: any) => ({
 		width: "100%",
 		height: "98vh",
 		display: "flex",
+		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: card?.card_background,
