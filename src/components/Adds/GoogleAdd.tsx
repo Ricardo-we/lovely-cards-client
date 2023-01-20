@@ -10,21 +10,20 @@ interface GoogleAddProps {}
 const GoogleAdd: FC<GoogleAddProps> = () => {
 	return (
 		<>
-			<Script
-				async
-				src={APP_CONFIG.GOOGLE_ADDS.src}
+			<ins
+				className="adsbygoogle"
+				// style="display:block"
 				data-ad-client={APP_CONFIG.GOOGLE_ADDS.dataClient}
-				slot={APP_CONFIG.GOOGLE_ADDS.slot}
-				// crossorigin="anonymous"
-				onError={console.error}
+				data-ad-slot={APP_CONFIG.GOOGLE_ADDS.slot}
+				data-ad-format="auto"
+				data-full-width-responsive="true"
+			></ins>
+			<script
+				dangerouslySetInnerHTML={{__html:`
+				(adsbygoogle = window.adsbygoogle || []).push({});	
+				`}}
 			/>
-			<Adsense
-				responsive="true"
-				adTest="on"
-				client="ca-pub-1781111148404359"
-				slot="7309166307"
-			/>
-			{/* <Adsense adTest="on" client="ca-pub-XXXXXXXXXX" slot="XXXXXXXXX" /> */}
+			
 		</>
 	);
 };

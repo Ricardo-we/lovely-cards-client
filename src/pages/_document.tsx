@@ -1,5 +1,7 @@
 import { Head, Html, Main, NextScript } from "next/document";
 
+import { APP_CONFIG } from "../config/app-settings";
+
 export default function Document() {
 	return (
 		<Html lang="en">
@@ -13,6 +15,15 @@ export default function Document() {
 					content="width=device-width, initial-scale=1"
 				/>
 				<link rel="icon" href="/favicon.ico" />
+				<script
+					async
+					src={APP_CONFIG.GOOGLE_ADDS.src}
+					data-ad-client={APP_CONFIG.GOOGLE_ADDS.dataClient}
+					slot={APP_CONFIG.GOOGLE_ADDS.slot}
+					// crossorigin="anonymous"
+					onError={console.error}
+					crossOrigin="anonymous"
+				/>
 			</Head>
 			<body>
 				<Main />
