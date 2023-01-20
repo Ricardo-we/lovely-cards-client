@@ -143,6 +143,7 @@ const CardDetails: FC<CardDetailsProps> = () => {
 	};
 
 	useEffect(() => {
+		if (user && !user?.token) router.push("/auth/login");
 		if (user?.token && cardId) getCard();
 	}, [user?.token, cardId]);
 

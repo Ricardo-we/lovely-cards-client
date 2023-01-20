@@ -32,3 +32,5 @@ export default function Document() {
 		</Html>
 	);
 }
+
+// ?client=ca-pub-1781111148404359
