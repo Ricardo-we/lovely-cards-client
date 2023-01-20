@@ -15,6 +15,7 @@ import CardsManagementSlider from "./components/CardsManagementSlider";
 import CardsService from "../../services/api/CardsService";
 import DeleteDialog from "../../components/DeleteDialog";
 import { FormActionTypes } from "../../types/Forms";
+import GoogleAdd from "../../components/Adds/GoogleAdd";
 import { Typography } from "@mui/material";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useLanguageContext } from "../../contexts/LanguageContext";
@@ -263,6 +264,8 @@ const CardDetails: FC<CardDetailsProps> = () => {
 					setCardImageDialogOpen(true);
 				}}
 			/>
+			
+			<GoogleAdd/>
 		</main>
 	);
 };
